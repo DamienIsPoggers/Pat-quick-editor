@@ -72,6 +72,25 @@ namespace Pat_quick_editor
                             pat.objects[pat.objectIds[j]].textureIndex = tex2;
                         }
                         break;
+                    case "-deleteEverySpr":
+                        pat.sprites.Clear();
+                        pat.spriteIds.Clear();
+                        break;
+                    case "-makeSprForEveryObj":
+                        for(int j = 0; j < pat.objects.Count; j++)
+                        {
+                            PR layer = new PR();
+                            layer.ppId = pat.objectIds[j];
+                            layer.filter = true;
+
+                            P_ spr = new P_();
+                            spr.name = "Obj_" + j.ToString();
+                            spr.layers.Add(0, layer);
+                            spr.layerIds.Add(0);
+                            pat.sprites.Add(j, spr);
+                            pat.spriteIds.Add(j);
+                        }
+                        break;
                     case "-save":
                         //Console.WriteLine("save");
                         pat.save(args[i + 1]);

@@ -86,6 +86,12 @@ namespace Pat_quick_editor
 
         public void loadFile(string path)
         {
+            sprites.Clear();
+            spriteIds.Clear();
+            objects.Clear();
+            objectIds.Clear();
+            ve = new VE();
+            pgRawData.Clear();
             BinaryReader file = new BinaryReader(File.Open(path, FileMode.Open));
             if(Encoding.ASCII.GetString(file.ReadBytes(12)) != "PAniDataFile")
             {
